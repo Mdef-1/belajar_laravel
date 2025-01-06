@@ -13,8 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/siswa', function () {
+    $data_siswa = ['keyndra','rido'];
+
+    return view('tampil',compact('data_siswa'));
 });
 
 route::get('/home/{nama}/{tempat_lahir}/{jenis_kelamin}/{agama}/{alamat}',function ($nama,$tmpt_l,$jk,$agama,$alamat){
