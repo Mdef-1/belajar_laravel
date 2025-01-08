@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Barang;
+use App\Http\controllers\PostsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,11 +15,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/siswa', function () {
-    $data_siswa = ['keyndra','rido'];
+// Route::get('/barang', function () {
 
-    return view('tampil',compact('data_siswa'));
+//     $barang= Barang::where('id', 3)->get();
+//     return view('tampil_barang',compact('barang'));
+
+// });
+
+route::get('/', function () {
+    return view('welcome');
 });
+
+Route::get('/Post', [PostsController::class, 'menampilkan']);
+Route::get('/barang', [PostsController::class, 'menampilkan2']);
 
 route::get('/home/{nama}/{tempat_lahir}/{jenis_kelamin}/{agama}/{alamat}',function ($nama,$tmpt_l,$jk,$agama,$alamat){
     return "nama : ".$nama."<br>".
@@ -151,3 +161,6 @@ route::get('struk/{nama}/{telepon}/{jenis_barang}/{nama_barang}/{jumlah}/{pembay
 
     
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
